@@ -3,9 +3,11 @@
 import { Link, NavLink } from "@remix-run/react";
 
 import { useState } from "react";
+import Basket from "./Basket";
+import useDisclosure from "@/hooks/useDisclosure";
 
 const Navbar = () => {
-  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <header className="w-full sticky top-0 z-[2000] bg-white md:h-[80px] flex items-center border-b border-gray-200">
@@ -38,32 +40,19 @@ const Navbar = () => {
             About
           </NavLink>
           <div className="relative">
-            <Link
-              to="/login"
-              aria-label="Navigate to login page"
-              type="button"
-              className="w-[40px] h-[40px] rounded-full text-center flex items-center justify-center bg-secondary-50 text-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                setDropdownOpen(!dropdownOpen);
+            <button
+              className="w-[40px] relative border border-white !z-[10000] h-[40px] p-2 rounded-full text-center flex items-center justify-center bg-secondary-50 text-secondary"
+              onClick={() => {
+                isOpen ? onClose() : onOpen();
               }}
             >
-              Cart
-            </Link>
-            {dropdownOpen && (
-              <div
-                id="dropdown"
-                className="w-[250px] z-10 absolute right-0 top-12 bg-white divide-y flex flex-col gap-3 divide-gray-100 rounded-lg shadow w-44 p-3"
-              >
-                <div>
-                  <h5 className="text-md text-primary font-medium">Name</h5>
-                  <p className="text-xs">email</p>
-                </div>
-                <button className="w-full bg-primary text-secondary text-xs flex-1 p-2 rounded-md flex-center">
-                  Logout
-                </button>
+              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-[10px] font-bold text-white bg-secondary border-2 border-white rounded-full -top-2 -end-2">
+                3
               </div>
-            )}
+
+              <img src="/cart.svg" alt="shopping cart image" />
+            </button>
+            <Basket isOpen={isOpen} onClose={onClose} />
           </div>
         </nav>
       </div>

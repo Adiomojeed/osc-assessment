@@ -22,7 +22,7 @@ const ProductCard = () => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-col gap-1 mt-3">
+      <div className="flex flex-col gap-1 px-2 mt-3">
         <h6 className="text-lg font-medium line-clamp-1">Product title</h6>
         <small className="line-clamp-2 text-primary-50">
           Product description

@@ -48,6 +48,9 @@ module.exports = {
           typescript: {},
         },
       },
+      rules: {
+        "jsx-a11y/click-events-have-key-events": 0,
+      },
     },
 
     // Typescript
