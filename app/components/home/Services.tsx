@@ -7,7 +7,7 @@ const Services = () => {
           Shop the Latest Trends
         </h5>
         <p className="text-center text-primary-50">
-          We curate the latest styles, from runway-inspired looks to everyday
+          We curate the latest styles, from inspired looks to everyday
           essentials, ensuring you always step out in confidence.
         </p>
       </div>

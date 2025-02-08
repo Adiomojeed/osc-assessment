@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import Button from "../Button";
 
 const Hero = () => {
@@ -18,7 +19,9 @@ const Hero = () => {
               bring you the latest trends, timeless classics, and must-have
               essentials—all in one place.
             </h6>
-            <Button className="w-min">Browse Store</Button>
+            <Link to="/products" aria-label="Go to products page">
+              <Button className="w-min">Browse Store</Button>
+            </Link>
           </div>
 
           <div className="hidden md:flex flex-center h-full">

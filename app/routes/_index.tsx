@@ -9,14 +9,6 @@ const Homepage = () => {
       <Hero />
       <Services />
       <FeaturedProducts />
-      <footer className="bg-[#EDEDED] mt-5 ">
-        <div className="container !py-3 flex items-center justify-between">
-          <h4 className="text-xl font-bold">
-            Open Study <span className="font-normal">Store</span>
-          </h4>
-          <p>&copy; {new Date().getFullYear()}</p>
-        </div>
-      </footer>
     </>
   );
 };

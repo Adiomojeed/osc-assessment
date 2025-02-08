@@ -1,13 +1,11 @@
 "use client";
 
-import { Link } from "@remix-run/react";
+import { Link, NavLink } from "@remix-run/react";
 
 import { useState } from "react";
 
 const Navbar = () => {
-  
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-  
 
   return (
     <header className="w-full sticky top-0 z-[2000] bg-white md:h-[80px] flex items-center border-b border-gray-200">
@@ -17,20 +15,28 @@ const Navbar = () => {
         </Link>
 
         <nav className="flex items-center gap-8 lg:gap-10">
-          <Link
+          <NavLink
             to="/products"
+            className={({ isActive }) =>
+              isActive
+                ? "underline underline-offset-8 decoration-2"
+                : "text-primar hover:underline underline-offset-8 decoration-2"
+            }
             aria-label="Navigate to products page"
-            className="text-primary"
           >
             Products
-          </Link>
-          <Link
-            to="/products"
-            aria-label="Navigate to products page"
-            className="text-primary"
+          </NavLink>
+          <NavLink
+            to="/about"
+            aria-label="Navigate to about page"
+            className={({ isActive }) =>
+              isActive
+                ? "underline underline-offset-8 decoration-2"
+                : "text-primary hover:underline underline-offset-8 decoration-2"
+            }
           >
             About
-          </Link>
+          </NavLink>
           <div className="relative">
             <Link
               to="/login"
@@ -53,17 +59,12 @@ const Navbar = () => {
                   <h5 className="text-md text-primary font-medium">Name</h5>
                   <p className="text-xs">email</p>
                 </div>
-                <button
-                  
-                  className="w-full bg-primary text-secondary text-xs flex-1 p-2 rounded-md flex-center"
-                >
+                <button className="w-full bg-primary text-secondary text-xs flex-1 p-2 rounded-md flex-center">
                   Logout
                 </button>
               </div>
             )}
           </div>
-
-        
         </nav>
       </div>
     </header>
