@@ -12,7 +12,7 @@ const ProductCard = () => {
         />
         <div className="absolute bottom-3 left-3 items-center gap-2 flex lg:hidden lg:group-hover:flex">
           <Button size="sm" className="!px-2 rounded text-xs">
-            Add to Cart
+            Add to Basket
           </Button>
           <Link
             to="/products/1"

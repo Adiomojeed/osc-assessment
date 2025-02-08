@@ -25,6 +25,10 @@ body {
   color: var(--color-primary);
 }
 
+button {
+  @apply cursor-pointer;
+}
+
 .quicksand {
   font-family: "Quicksand", sans-serif;
 }
