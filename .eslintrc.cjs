@@ -24,7 +24,6 @@ module.exports = {
   // Base config
   extends: ["eslint:recommended"],
 
-
   overrides: [
     // React
     {
@@ -72,6 +71,10 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+      rules: {
+        "react-hooks/exhaustive-deps": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+      },
     },
 
     // Node

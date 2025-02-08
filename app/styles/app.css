@@ -1,2 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@300..700&display=swap");
+
 @import "tailwindcss";
 @import "tailwindcss/utilities";
+
+@theme {
+  --color-primary: #062032;
+  --color-primary-50: #4c4445;
+  --color-secondary: #58a59c;
+  --color-secondary-50: #d7f0ee;
+}
+
+.h-screen {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.max-h-screen {
+  max-height: 100vh;
+  max-height: calc(var(--vh, 1vh) * 100);
+}
+
+body {
+  font-family: "Poppins", serif;
+  color: var(--color-primary);
+}
+
+.quicksand {
+  font-family: "Quicksand", sans-serif;
+}
+
+@layer base {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
+.container {
+  @apply mx-auto relative max-w-[1200px] px-4 py-4 lg:py-10;
+}
+
+img {
+  object-fit: cover !important;
+}
