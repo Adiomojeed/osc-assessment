@@ -2,7 +2,6 @@ import { getCollections, Collection, getProducts, Product } from "@/api/api";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 import { getCollectionId } from "@/utils";
-import ProductCard from "@components/ProductCard";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   useLoaderData,
@@ -10,6 +9,8 @@ import {
   useSearchParams,
   useNavigation,
 } from "@remix-run/react";
+import { lazy } from "react";
+const ProductCard = lazy(() => import("@components/ProductCard"));
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);

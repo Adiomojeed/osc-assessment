@@ -1,7 +1,9 @@
 import { Link } from "@remix-run/react";
 import Button from "../Button";
-import ProductCard from "../ProductCard";
 import { Product } from "@/api/api";
+import { lazy } from "react";
+
+const ProductCard = lazy(() => import("../ProductCard"));
 
 const FeaturedProducts = ({ products }: { products: Product[] }) => {
   return (

@@ -8,9 +8,9 @@ import {
 
 import appStylesHref from "@styles/app.css?url";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
-import Navbar from "./components/Navbar";
 import "react-toastify/ReactToastify.css";
-import { lazy } from "react";
+import { lazy, useEffect, useState } from "react";
+import Loader from "./components/Loader";
 
 const ToastContainer = lazy(() =>
   import("react-toastify").then((module) => ({
@@ -19,6 +19,7 @@ const ToastContainer = lazy(() =>
 );
 
 const CartContextProvider = lazy(() => import("./utils/cartContext"));
+const Navbar = lazy(() => import("./components/Navbar"));
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
@@ -43,37 +44,50 @@ export const meta: MetaFunction = () => {
     },
     {
       name: "viewport",
-      content:
-        "width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1",
+      content: "width=device-width, initial-scale=1, minimum-scale=1",
     },
   ];
 };
 
 export default function App() {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+
+    return () => {
+      setIsClient(false);
+    };
+  }, []);
+
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <ToastContainer />
-        <CartContextProvider>
-          <main className="w-full h-screen flex flex-col overflow-auto pb-20">
-            <Navbar />
-            <Outlet />
-            <footer className="bg-[#EDEDED] fixed bottom-0 w-full">
-              <div className="container !py-3 flex items-center justify-between">
-                <h6 className="text-lg font-bold">
-                  Open Study <span className="font-normal">Store</span>
-                </h6>
-                <p>&copy; {new Date().getFullYear()}</p>
-              </div>
-            </footer>
-          </main>
-        </CartContextProvider>
+        {!isClient ? (
+          <Loader className="h-screen" />
+        ) : (
+          <>
+            <ToastContainer />
+            <CartContextProvider>
+              <main className="w-full h-screen flex flex-col overflow-auto pb-20">
+                <Navbar />
+                <Outlet />
+                <footer className="bg-[#EDEDED] fixed bottom-0 w-full">
+                  <div className="container !py-3 flex items-center justify-between">
+                    <h6 className="text-lg font-bold">
+                      Open Study <span className="font-normal">Store</span>
+                    </h6>
+                    <p>&copy; {new Date().getFullYear()}</p>
+                  </div>
+                </footer>
+              </main>
+            </CartContextProvider>
+          </>
+        )}
         <ScrollRestoration />
         <Scripts />
       </body>
