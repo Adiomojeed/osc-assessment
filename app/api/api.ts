@@ -1,9 +1,10 @@
 import { gql } from "graphql-request";
 import { graphQLClient } from "./server";
+import { getCollectionId } from "@/utils";
 
 const formatProduct = (products: any) => {
   return products.edges.map((edge: any) => ({
-    id: edge.node.id,
+    id: getCollectionId(edge.node.id),
     title: edge.node.title,
     description: edge.node.description,
     featuredImage: edge.node.featuredImage,
@@ -18,7 +19,7 @@ export type Collection = {
 };
 
 export type Product = {
-  id: string;
+  id: number;
   title: string;
   description: string;
   featuredImage: {
@@ -126,7 +127,7 @@ export async function getSingleProduct(productId: string) {
   };
 
   const { variants, ...rest } = data.product;
-  const product: Product = { ...rest, price: variants.edges[0].node.price }
+  const product: Product = { ...rest, id: Number(getCollectionId(rest.id)), price: variants.edges[0].node.price }
 
   return product;
 }

@@ -1,9 +1,15 @@
 import { getCollections, Collection, getProducts, Product } from "@/api/api";
 import Button from "@/components/Button";
+import Loader from "@/components/Loader";
 import { getCollectionId } from "@/utils";
 import ProductCard from "@components/ProductCard";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
+import {
+  useLoaderData,
+  useNavigate,
+  useSearchParams,
+  useNavigation,
+} from "@remix-run/react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -27,10 +33,11 @@ const ProductsIndex = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const collectionId = searchParams.get("collection") ?? "";
+  const { state } = useNavigation();
 
   return (
     <>
-      <div className="flex items-center gap-4">
+      <div className="flex overflow-auto items-center gap-4 py-3 px-2 -mt-3">
         {collections?.map((_, idx) => (
           <Button
             key={idx}
@@ -45,11 +52,15 @@ const ProductsIndex = () => {
           </Button>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10">
-        {products?.map((_, idx) => (
-          <ProductCard key={idx} product={_} />
-        ))}
-      </div>
+      {state === "loading" ? (
+        <Loader />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-7">
+          {products?.map((_, idx) => (
+            <ProductCard key={idx} product={_} />
+          ))}
+        </div>
+      )}
     </>
   );
 };

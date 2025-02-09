@@ -12,11 +12,13 @@ import Navbar from "./components/Navbar";
 import "react-toastify/ReactToastify.css";
 import { lazy } from "react";
 
-let ToastContainer = lazy(() =>
+const ToastContainer = lazy(() =>
   import("react-toastify").then((module) => ({
     default: module.ToastContainer,
   }))
 );
+
+const CartContextProvider = lazy(() => import("./utils/cartContext"));
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
@@ -57,20 +59,21 @@ export default function App() {
         <Links />
       </head>
       <body>
-        {/* <ToastContainer /> */}
-        <main className="w-full h-screen flex flex-col overflow-auto pb-20">
-          <Navbar />
-          <Outlet />
-          <footer className="bg-[#EDEDED] fixed bottom-0 w-full">
-            <div className="container !py-3 flex items-center justify-between">
-              <h6 className="text-lg font-bold">
-                Open Study <span className="font-normal">Store</span>
-              </h6>
-              <p>&copy; {new Date().getFullYear()}</p>
-            </div>
-          </footer>
-        </main>
-
+        <ToastContainer />
+        <CartContextProvider>
+          <main className="w-full h-screen flex flex-col overflow-auto pb-20">
+            <Navbar />
+            <Outlet />
+            <footer className="bg-[#EDEDED] fixed bottom-0 w-full">
+              <div className="container !py-3 flex items-center justify-between">
+                <h6 className="text-lg font-bold">
+                  Open Study <span className="font-normal">Store</span>
+                </h6>
+                <p>&copy; {new Date().getFullYear()}</p>
+              </div>
+            </footer>
+          </main>
+        </CartContextProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

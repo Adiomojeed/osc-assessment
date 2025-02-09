@@ -1,16 +1,15 @@
-"use client";
-
 import { Link, NavLink } from "@remix-run/react";
-
-import { useState } from "react";
 import Basket from "./Basket";
 import useDisclosure from "@/hooks/useDisclosure";
+import { ICart, useCart } from "@/utils/cartContext";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { cart }: ICart = useCart();
+  const total = cart?.reduce((a, b) => a + b.quantity, 0);
 
   return (
-    <header className="w-full sticky top-0 z-[2000] bg-white md:h-[80px] flex items-center border-b border-gray-200">
+    <header className="w-full sticky top-0 z-[2000] bg-white md:min-h-[80px] md:max-h-[80px] flex items-center border-b border-gray-200">
       <div className="container flex justify-between !py-3 md:py-0 flex-col sm:flex-row gap-2 md:gap-4 items-center">
         <Link to="/" aria-label="Go to homepage" className="block w-[200px] ">
           <img src="/logo.png" alt="App logo" />
@@ -46,11 +45,13 @@ const Navbar = () => {
                 isOpen ? onClose() : onOpen();
               }}
             >
-              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-[10px] font-bold text-white bg-secondary border-2 border-white rounded-full -top-2 -end-2">
-                3
-              </div>
+              {total > 0 && (
+                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-[10px] font-bold text-white bg-secondary border-2 border-white rounded-full -top-2 -end-2">
+                  {total}
+                </div>
+              )}
 
-              <img src="/cart.svg" alt="shopping cart image" />
+              <img src="/cart.svg" alt="shopping cart" />
             </button>
             <Basket isOpen={isOpen} onClose={onClose} />
           </div>

@@ -1,23 +1,33 @@
 import { Link } from "@remix-run/react";
 import Button from "./Button";
 import { Product } from "@/api/api";
-import { getCollectionId } from "@/utils";
+import { ICart, useCart } from "@/utils/cartContext";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const { addItemToCart, removeItemFromCart, cart }: ICart = useCart();
+
+  const productInCart = cart?.some((i) => i.product.id === product.id);
   return (
     <div className="border rounded-lg p-2 border-gray-100 group">
       <div className="rounded-lg relative">
         <img
           src={product.featuredImage.url}
-          className="w-full rounded-lg"
+          className="w-full rounded-lg h-[340px] md:h-[215px] xl:h-[245px]"
           alt="product-image"
         />
         <div className="absolute bottom-3 left-3 items-center gap-2 flex lg:hidden lg:group-hover:flex">
-          <Button size="sm" className="!px-2 rounded text-xs">
-            Add to Basket
+          <Button
+            size="sm"
+            className="!px-2 rounded text-xs"
+            onClick={() => {
+              if (!productInCart) addItemToCart(product);
+              else removeItemFromCart(product.id);
+            }}
+          >
+            {productInCart ? "Remove from" : "Add to"} Basket
           </Button>
           <Link
-            to={`/products/${getCollectionId(product.id)}`}
+            to={`/products/${product.id}`}
             className="flex-center bg-white rounded w-9 h-9"
           >
             <img src="/eye.svg" className="w-6" alt="view product icon" />
