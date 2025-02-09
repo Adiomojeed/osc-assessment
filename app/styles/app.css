@@ -42,3 +42,19 @@ button {
 img {
   object-fit: cover !important;
 }
+
+.Toastify__toast-container {
+  width: auto !important;
+}
+
+.Toastify__toast {
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0px !important;
+  right: -5px;
+}
+
+.Toastify__toast-body {
+  background: transparent;
+  padding: 0;
+}

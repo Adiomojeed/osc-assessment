@@ -9,9 +9,18 @@ import {
 import appStylesHref from "@styles/app.css?url";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
 import Navbar from "./components/Navbar";
+import "react-toastify/ReactToastify.css";
+import { lazy } from "react";
+
+let ToastContainer = lazy(() =>
+  import("react-toastify").then((module) => ({
+    default: module.ToastContainer,
+  }))
+);
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStylesHref },
+
   {
     rel: "icon",
     href: "/favico.png",
@@ -48,6 +57,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        {/* <ToastContainer /> */}
         <main className="w-full h-screen flex flex-col overflow-auto pb-20">
           <Navbar />
           <Outlet />

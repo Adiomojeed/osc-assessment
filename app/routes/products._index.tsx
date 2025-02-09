@@ -1,17 +1,31 @@
+import { getCollections, Collection } from "@/api/api";
 import Button from "@/components/Button";
 import ProductCard from "@components/ProductCard";
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
+export const loader = async () => {
+  const collections = await getCollections();
+  if (!collections) {
+    throw new Response("Not Found", { status: 404 });
+  }
+  return Response.json({ collections });
+};
 
 const ProductsIndex = () => {
+  const { collections } = useLoaderData<{ collections: Collection[] }>();
+
   return (
     <>
       <div className="flex items-center gap-4">
-        {Array.from({ length: 6 }).map((_, idx) => (
+        {collections?.map((_, idx) => (
           <Button
             key={idx}
             btnType={idx === 0 ? "main" : "outline"}
-            className="rounded-full !px-8"
+            className="rounded-full !px-5"
+            size="sm"
           >
-            All
+            {_?.title}
           </Button>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import customToast, { ToastType } from "@/components/Toast";
 
 const SingleProduct = () => {
   return (
@@ -26,8 +27,15 @@ const SingleProduct = () => {
               <button className="p-2">+</button>
             </div>
           </div>
-          <Button className="h-[56px] mt-5">Add to Basket</Button>
-          <small className="text-secondary">Shipping fee calculated at checkout</small>
+          <Button
+            onClick={() => customToast("okat", ToastType.success)}
+            className="h-[56px] mt-5"
+          >
+            Add to Basket
+          </Button>
+          <small className="text-secondary">
+            Shipping fee calculated at checkout
+          </small>
         </div>
       </div>
     </>
