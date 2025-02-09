@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import Button from "../Button";
 import ProductCard from "../ProductCard";
 import { Product } from "@/api/api";

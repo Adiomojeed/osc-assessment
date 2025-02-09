@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 import { ICart, useCart } from "@/utils/cartContext";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, useNavigation } from "@remix-run/react";
+import { useLoaderData, useNavigate, useNavigation } from "@remix-run/react";
 import { useEffect, useState } from "react";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -30,12 +30,16 @@ const SingleProduct = () => {
     setQuantity(productInCart?.quantity ?? 0);
   }, [cart]);
   const { state } = useNavigation();
+  const navigate = useNavigate();
 
   return state === "loading" ? (
     <Loader />
   ) : (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lggap-10">
+      <button onClick={() => navigate(-1)} className="flex items-center gap-2">
+        <img src="/arrow-back.svg" className="w-4" alt="back arrow" /> Back to previous page
+      </button>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
         <img
           src={product.featuredImage.url}
           className="w-full"

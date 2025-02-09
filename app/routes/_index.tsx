@@ -1,5 +1,4 @@
 import { getFeaturedProducts, Product } from "@/api/api";
-import Button from "@/components/Button";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Hero from "@/components/home/Hero";
 import Services from "@/components/home/Services";
