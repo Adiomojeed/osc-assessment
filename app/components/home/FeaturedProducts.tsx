@@ -1,8 +1,9 @@
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import Button from "../Button";
 import ProductCard from "../ProductCard";
+import { Product } from "@/api/api";
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({ products }: { products: Product[] }) => {
   return (
     <section className="container py-10">
       <div className="flex items-center justify-between">
@@ -14,8 +15,8 @@ const FeaturedProducts = () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10">
-        {Array.from({ length: 8 }).map((_, idx) => (
-          <ProductCard key={idx} />
+        {products.map((_, idx) => (
+          <ProductCard key={idx} product={_} />
         ))}
       </div>
     </section>

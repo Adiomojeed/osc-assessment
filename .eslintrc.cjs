@@ -50,6 +50,7 @@ module.exports = {
       },
       rules: {
         "jsx-a11y/click-events-have-key-events": 0,
+        
       },
     },
 
@@ -77,6 +78,7 @@ module.exports = {
       rules: {
         "react-hooks/exhaustive-deps": 0,
         "@typescript-eslint/no-explicit-any": 0,
+        "import/no-unresolved": 0,
       },
     },
 
