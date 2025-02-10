@@ -30,15 +30,15 @@ const ProductCard = ({ product }: { product: Product }) => {
             to={`/products/${product.id}`}
             className="flex-center bg-white rounded w-9 h-9"
           >
-            <img src="/eye.svg" className="w-6" alt="view product icon" />
+            <img src="/eye.svg" className="w-6 h-6" alt="view product icon" />
           </Link>
         </div>
       </div>
       <div className="flex flex-col gap-1 px-2 mt-3">
-        <h6 className="text-lg font-medium line-clamp-1">{product.title}</h6>
-        <small className="line-clamp-2 text-primary-50">
+        <h5 className="text-lg font-medium line-clamp-1">{product.title}</h5>
+        <h6 className="text-sm line-clamp-2 text-primary-50">
           {product.description}
-        </small>
+        </h6>
         <h6 className="text-lg font-bold">
           {product.price.amount} {product.price.currencyCode}
         </h6>
