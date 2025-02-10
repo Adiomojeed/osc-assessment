@@ -1,5 +1,8 @@
 import { ReactNode } from "react";
 
+/**
+ * Custom button component
+ */
 const Button = ({
   children,
   className,

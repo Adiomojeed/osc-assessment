@@ -3,6 +3,9 @@ import Basket from "./Basket";
 import useDisclosure from "@/hooks/useDisclosure";
 import { ICart, useCart } from "@/utils/cartContext";
 
+/**
+ * Application Navbar
+ */
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cart }: ICart = useCart();

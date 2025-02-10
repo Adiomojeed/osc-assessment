@@ -14,10 +14,6 @@ import {
   type TypeOptions,
 } from "react-toastify";
 
-// import Error from "components/Toast/Error";
-// import Warning from "components/Toast/Warning";
-// import Success from "components/Toast/Success";
-
 interface ToastProps {
   message: string;
   type: TypeOptions;
@@ -82,6 +78,7 @@ const toastOptions: ToastOptions = {
   closeButton: false,
 };
 
+// custom toast component to show alerts of operations to users
 const customToast = (message: string, type: TypeOptions) => {
   toast(<ToastUI message={message} type={type} />, toastOptions);
 };

@@ -34,7 +34,7 @@ const BasketProduct = ({ data }: { data: cartType }) => {
         <div className="flex items-center border border-secondary w-min px-3 py- gap-4">
           <button
             className="p-1"
-            onClick={() => removeItemFromCart(product.id)}
+            onClick={() => removeItemFromCart(product.id, false)}
           >
             -
           </button>
@@ -42,7 +42,7 @@ const BasketProduct = ({ data }: { data: cartType }) => {
           <button
             className="p-1"
             onClick={() => {
-              addItemToCart(product);
+              addItemToCart(product, 1, false);
             }}
           >
             +

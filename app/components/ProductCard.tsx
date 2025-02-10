@@ -3,6 +3,9 @@ import Button from "./Button";
 import { Product } from "@/api/api";
 import { ICart, useCart } from "@/utils/cartContext";
 
+/**
+ * Product card component
+ */
 const ProductCard = ({ product }: { product: Product }) => {
   const { addItemToCart, removeItemFromCart, cart }: ICart = useCart();
 

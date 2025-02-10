@@ -5,6 +5,7 @@ import customToast, { ToastType } from "./Toast";
 import BasketProduct from "./BasketProduct";
 import { useState } from "react";
 
+// Mini basket to simulate shopping cart
 const Basket = ({
   isOpen,
   onClose,

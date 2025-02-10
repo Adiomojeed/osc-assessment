@@ -1,3 +1,6 @@
+/**
+ * Component to show the laoding state of the application
+ */
 const Loader = ({ className }: { className?: string }) => {
   return (
     <div

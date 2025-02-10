@@ -12,18 +12,30 @@ import {
 const key = "persist:os";
 export type cartType = { product: Product; quantity: number };
 
+/**
+ * Interface to define the cart structure
+ */
 export interface ICart {
   cart: cartType[];
-  addItemToCart: (e: Product, q?: number) => void;
-  removeItemFromCart: (e: number) => void;
+  addItemToCart: (e: Product, q?: number, toast?: boolean) => void;
+  removeItemFromCart: (e: number, toast?: boolean) => void;
   deleteProductInCart: (e: number) => void;
   emptyCart: () => void;
 }
 
+/**
+ * Creates context for managing the cart state in the application.
+ */
 export const CartContext = createContext({} as ICart);
 
+/**
+ * Custom hook to access the CartContext.
+ */
 export const useCart = () => useContext(CartContext);
 
+/**
+ * context provider to wrap around application to have access to the state
+ */
 const CartContextProvider = ({ children }: { children: ReactNode }) => {
   // Get persisted cart data from localstorage
   const [cart, setCart] = useState<cartType[]>(() => {
@@ -41,7 +53,7 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
   }, [cart]);
 
   // This function handles adding a product to cart and incrementing quantity if product already exists
-  const addItemToCart = (data: Product, quantity: number = 1) => {
+  const addItemToCart = (data: Product, quantity: number = 1, toast = true) => {
     const index = cart?.findIndex(
       (i) => Number(i.product.id) === Number(data.id)
     );
@@ -57,11 +69,15 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setCart((prev) => [...prev, { product: data, quantity: quantity }]);
     }
-    customToast("Product item added to basket successfully", ToastType.success);
+    toast &&
+      customToast(
+        "Product item added to basket successfully",
+        ToastType.success
+      );
   };
 
   // This function removes 1 quantity of product from cart
-  const removeItemFromCart = (id: number) => {
+  const removeItemFromCart = (id: number, toast = true) => {
     const index = cart?.findIndex((i) => Number(i.product.id) === Number(id));
 
     if (cart[index]?.quantity > 1) {
@@ -76,7 +92,7 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
         ...(prev ?? []).slice(index + 1),
       ]);
     }
-    customToast("Product item removed from cart", ToastType.success);
+    toast && customToast("Product item removed from basket", ToastType.success);
   };
 
   // This function deletes a product irrespective of quantity
@@ -90,6 +106,9 @@ const CartContextProvider = ({ children }: { children: ReactNode }) => {
     setCart([]);
   };
 
+  /**
+   * Memoized value containing cart operations.
+   */
   const value = useMemo(
     () => ({
       cart,
