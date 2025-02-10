@@ -36,7 +36,7 @@ const About = () => {
 
             <div className="hidden md:flex flex-center h-full">
               <img
-                src="/hero.png"
+                src="/hero.webp"
                 className="h-full"
                 alt="person holding bags"
               />

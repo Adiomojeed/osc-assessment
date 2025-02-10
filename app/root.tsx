@@ -8,7 +8,6 @@ import {
 
 import appStylesHref from "@styles/app.css?url";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
-import "react-toastify/ReactToastify.css";
 import { lazy, useEffect, useState } from "react";
 import Loader from "./components/Loader";
 
@@ -17,17 +16,24 @@ const ToastContainer = lazy(() =>
     default: module.ToastContainer,
   }))
 );
-
 const CartContextProvider = lazy(() => import("./utils/cartContext"));
 const Navbar = lazy(() => import("./components/Navbar"));
+const Styling = lazy(() => import("./components/StylingComponent"));
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: appStylesHref },
-
+  { rel: "stylesheet", href: appStylesHref, as: "style" },
   {
     rel: "icon",
     href: "/favico.png",
     type: "image/png",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
+  {
+    rel: "dns-prefetch",
+    href: "https://fonts.googleapis.com",
   },
 ];
 
@@ -66,6 +72,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
+      <Styling />
       <body>
         {!isClient ? (
           <Loader className="h-screen" />

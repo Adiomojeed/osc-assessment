@@ -6,28 +6,28 @@ const Services = () => {
         <h5 className="text-xl font-bold text-center">
           Shop the Latest Trends
         </h5>
-        <p className="text-center text-primary-50">
+        <h6 className="text-center text-primary-50">
           We curate the latest styles, from inspired looks to everyday
           essentials, ensuring you always step out in confidence.
-        </p>
+        </h6>
       </div>
       <div className="flex-center flex-col gap-2">
         <div className="text-[100px]">👗</div>
         <h5 className="text-xl font-bold text-center">Quality You Can Trust</h5>
-        <p className="text-center text-primary-50">
+        <h6 className="text-center text-primary-50">
           We offer high-quality clothing, well-crafted footwear, and premium
           accessories designed to last
-        </p>
+        </h6>
       </div>
       <div className="flex-center flex-col gap-2">
         <div className="text-[100px]">🚚</div>
         <h5 className="text-xl font-bold text-center">
           Fast & Reliable Shipping
         </h5>
-        <p className="text-center text-primary-50">
+        <h6 className="text-center text-primary-50">
           No more long waits! We guarantee quick, secure, and hassle-free
           delivery for all your fashion needs.
-        </p>
+        </h6>
       </div>
     </section>
   );

@@ -11,8 +11,8 @@ const Navbar = () => {
   return (
     <header className="w-full sticky top-0 z-[2000] bg-white md:min-h-[80px] md:max-h-[80px] flex items-center border-b border-gray-200">
       <div className="container flex justify-between !py-3 md:py-0 flex-col sm:flex-row gap-2 md:gap-4 items-center">
-        <Link to="/" aria-label="Go to homepage" className="block w-[200px] ">
-          <img src="/logo.png" alt="App logo" />
+        <Link to="/" aria-label="Go to homepage" className="block w-[200px]">
+          <img src="/logo.png" alt="App logo" className="w-full h-full" />
         </Link>
 
         <nav className="flex items-center gap-8 lg:gap-10">
@@ -40,7 +40,7 @@ const Navbar = () => {
           </NavLink>
           <div className="relative">
             <button
-              className="w-[40px] relative border border-white !z-[10000] h-[40px] p-2 rounded-full text-center flex items-center justify-center bg-secondary-50 text-secondary"
+              className="w-10 h-10 relative border border-white !z-[10000] rounded-full text-center flex items-center justify-center bg-secondary-50 text-secondary"
               onClick={() => {
                 isOpen ? onClose() : onOpen();
               }}
@@ -51,7 +51,7 @@ const Navbar = () => {
                 </div>
               )}
 
-              <img src="/cart.svg" alt="shopping cart" />
+              <img src="/cart.svg" alt="shopping cart" className="w-6 h-6" />
             </button>
             <Basket isOpen={isOpen} onClose={onClose} />
           </div>
