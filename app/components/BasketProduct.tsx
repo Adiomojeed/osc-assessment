@@ -38,7 +38,7 @@ const BasketProduct = ({ data }: { data: cartType }) => {
           >
             -
           </button>
-          <small className="font-bold">{quantity}</small>
+          <small className="font-bold w-4 flex-center">{quantity}</small>
           <button
             className="p-1"
             onClick={() => {

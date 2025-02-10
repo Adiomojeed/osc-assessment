@@ -72,9 +72,27 @@ npm run test
 -  **Separation of concerns**: This ensures that each component and utility function has a single responsibility, improving code readability and maintainability.
 ```
 /
-├── app/ # All application source codes are here, including styles, API calls, and unit/integration tests
+├── app/ 				# All application source codes are here, including styles, API calls, and unit/integration tests
+|	├── __tests__/ 		# contains all units and integration tests
+|	├── api/ 			# contains api related codes (graphql) 
+|	├── components/ 	# all reusable components
+|	├── hooks/ 			# contains all custom hooks used in application
+|	├── routes/ 		# pages routing 
+|	├── styles/ 		# application stylings (css) 
+|	├── utils/ 			# self-defined functions 
+|	├── root.tsx 		# applicatione entry 
 ├── public/ # All static assets are stored here
-├── others # Other configuration files are listed below
+├── .env.example        # environment variables
+├── .eslintrc.cjs       # linting rules configuration
+├── .gitignore          # git ignores files
+├── vitest.config.ts	# vitest configurations for tests
+├── vitest.setup.ts		# vitest setup for file
+├── vite.config.ts 		# vite configuration
+├── README.md           # ReadME documentations
+├── package.json        # application information and dependencies
+├── postcss.config.js
+└── tsconfig.json       # typescripts configurations
+├── others 				# Other configuration files are listed below
 └── ...
 ```
 ### Performance Optimization
